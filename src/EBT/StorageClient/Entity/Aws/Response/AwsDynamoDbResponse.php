@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace EBT\StorageClient\Entity\AwsResponse;
+namespace EBT\StorageClient\Entity\Aws\Response;
 
-class AwsDynamoDbProxyResponse extends BaseAwsProxyResponse
+class AwsDynamoDbResponse extends AwsResponse
 {
     /**
      * Error code constants.

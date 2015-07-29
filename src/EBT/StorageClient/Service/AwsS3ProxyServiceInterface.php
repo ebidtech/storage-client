@@ -11,7 +11,8 @@
 
 namespace EBT\StorageClient\Service;
 
-use EBT\StorageClient\Entity\AwsResponse\AwsS3ProxyResponse;
+use EBT\StorageClient\Entity\Aws\Request\AwsS3Request;
+use EBT\StorageClient\Entity\Aws\Response\AwsS3Response;
 
 /**
  * Defines the operations that are possible to perform in S3. These operations are divided into multiple types.
@@ -42,93 +43,81 @@ interface AwsS3ProxyServiceInterface
     /**
      * Stores a new object in the storage.
      *
-     * @param string $bucket  Bucket name.
-     * @param string $key     Key of the object to store.
-     * @param string $body    Value of the object to store.
-     * @param array  $options Additional options.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#putobject
      */
-    public function putObject($bucket, $key, $body, array $options = array());
+    public function putObject(AwsS3Request $request);
 
     /**
      * Stores a new object in the storage (asynchronously).
      *
-     * @param string $bucket  Bucket name.
-     * @param string $key     Key of the object to store.
-     * @param string $body    Value of the object to store.
-     * @param array  $options Additional options.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#putobject
      */
-    public function putObjectAsync($bucket, $key, $body, array $options = array());
+    public function putObjectAsync(AwsS3Request $request);
 
     /**
      * Retrieves a new object from the storage.
      *
-     * @param string $bucket  Bucket name.
-     * @param string $key     Key of the object to retrieve.
-     * @param array  $options Additional options.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#getobject
      */
-    public function getObject($bucket, $key, array $options = array());
+    public function getObject(AwsS3Request $request);
 
     /**
      * Retrieves a new object from the storage (asynchronously).
      *
-     * @param string $bucket  Bucket name.
-     * @param string $key     Key of the object to retrieve.
-     * @param array  $options Additional options.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#getobject
      */
-    public function getObjectAsync($bucket, $key, array $options = array());
+    public function getObjectAsync(AwsS3Request $request);
 
     /**
      * Creates a new bucket.
      *
-     * @param string $bucket  Bucket name.
-     * @param array  $options Additional options.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#createbucket
      */
-    public function createBucket($bucket, array $options = array());
+    public function createBucket(AwsS3Request $request);
 
     /**
      * Creates a new bucket (asynchronously).
      *
-     * @param string $bucket  Bucket name.
-     * @param array  $options Additional options.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#createbucket
      */
-    public function createBucketAsync($bucket, array $options = array());
+    public function createBucketAsync(AwsS3Request $request);
 
     /**
      * Retrieves metadata for a bucket (can be used as an existence check).
      *
-     * @param string $bucket Bucket name.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#headbucket
@@ -136,14 +125,14 @@ interface AwsS3ProxyServiceInterface
      * @NOTE: The official documentation (link above) states that when the bucket does not exist a 'NoSuchBucket'
      * error should be returned. Currently, the SDK returns a 'NotFound' error in such cases.
      */
-    public function headBucket($bucket);
+    public function headBucket(AwsS3Request $request);
 
     /**
      * Retrieves metadata for a bucket (can be used as an existence check) (asynchronously).
      *
-     * @param string $bucket Bucket name.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#headbucket
@@ -151,16 +140,14 @@ interface AwsS3ProxyServiceInterface
      * @NOTE: The official documentation (link above) states that when the bucket does not exist a 'NoSuchBucket'
      * error should be returned. Currently, the SDK returns a 'NotFound' error in such cases.
      */
-    public function headBucketAsync($bucket);
+    public function headBucketAsync(AwsS3Request $request);
 
     /**
      * Retrieves metadata for an object (can be used as an existence check).
      *
-     * @param string $bucket  Bucket name.
-     * @param string $key     Key to check.
-     * @param array  $options Additional options.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#headobject
@@ -168,16 +155,14 @@ interface AwsS3ProxyServiceInterface
      * @NOTE: The official documentation (link above) states that when the object does not exist a 'NoSuchKey'
      * error should be returned. Currently, the SDK returns a 'NotFound' error in such cases.
      */
-    public function headObject($bucket, $key, array $options = array());
+    public function headObject(AwsS3Request $request);
 
     /**
      * Retrieves metadata for an object (can be used as an existence check) (asynchronously).
      *
-     * @param string $bucket  Bucket name.
-     * @param string $key     Key to check.
-     * @param array  $options Additional options.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#headobject
@@ -185,57 +170,53 @@ interface AwsS3ProxyServiceInterface
      * @NOTE: The official documentation (link above) states that when the object does not exist a 'NoSuchKey'
      * error should be returned. Currently, the SDK returns a 'NotFound' error in such cases.
      */
-    public function headObjectAsync($bucket, $key, array $options = array());
+    public function headObjectAsync(AwsS3Request $request);
 
     /**
      * Retrieves a list of keys from a bucket.
      *
-     * @param string       $bucket    Bucket name.
-     * @param array        $options   Additional options.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#listobjects
      */
-    public function listObjects($bucket, array $options = array());
+    public function listObjects(AwsS3Request $request);
 
     /**
      * Retrieves a list of keys from a bucket (asynchronously).
      *
-     * @param string       $bucket    Bucket name.
-     * @param array        $options   Additional options.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#listobjects
      */
-    public function listObjectsAsync($bucket, array $options = array());
+    public function listObjectsAsync(AwsS3Request $request);
 
     /**
      * Waits until a bucket exists.
      *
-     * @param string $bucket Bucket name.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#waiters
      */
-    public function waitUntilBucketExists($bucket);
+    public function waitUntilBucketExists(AwsS3Request $request);
 
     /**
      * Waits until an object exists.
      *
-     * @param string $bucket  Bucket name.
-     * @param string $key     Key to wait for.
-     * @param array  $options Additional options.
+     * @param AwsS3Request $request The request object.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#waiters
      */
-    public function waitUntilObjectExists($bucket, $key, array $options = array());
+    public function waitUntilObjectExists(AwsS3Request $request);
 }

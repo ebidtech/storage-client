@@ -9,11 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace EBT\StorageClient\Entity\AwsResponse;
+namespace EBT\StorageClient\Entity\Aws\Response;
 
-use Aws\S3\Exception\S3Exception;
+use Aws\ResultInterface;
+use EBT\StorageClient\Entity\Aws\Result\AwsResult;
+use EBT\StorageClient\Entity\Aws\Result\AwsS3Result;
 
-class AwsS3ProxyResponse extends BaseAwsProxyResponse
+class AwsS3Response extends AwsResponse
 {
     /**
      * Error code constants.
@@ -23,13 +25,6 @@ class AwsS3ProxyResponse extends BaseAwsProxyResponse
     const ERROR_CODE_BUCKET_ALREADY_EXISTS = 'BucketAlreadyExists';
     const ERROR_CODE_ACCESS_DENIED         = 'AccessDenied';
     const ERROR_CODE_NOT_FOUND             = 'NotFound';
-
-    /**
-     * Result keys.
-     */
-    const RESULT_BODY            = 'Body';
-    const RESULT_OBJECT_URL      = 'ObjectURL';
-    const RESULT_OBJECT_CONTENTS = 'Contents';
 
     /**
      * Checks if a NoSuchBucket error occurred.
@@ -82,51 +77,22 @@ class AwsS3ProxyResponse extends BaseAwsProxyResponse
     }
 
     /**
-     * Retrieves the result's body if it exists, null otherwise.
+     * Retrieves the result, if any.
      *
-     * @return string|resource|\Psr\Http\Message\StreamInterface|null
+     * @return AwsS3Result
      */
-    public function getResultBody()
+    public function getResult()
     {
-        return $this->getResultByKey(self::RESULT_BODY);
+        return parent::getResult();
     }
 
     /**
-     * Retrieves the result's object URL if it exists, null otherwise.
-     *
-     * @return string|null
+     * {@inheritDoc}
      */
-    public function getResultObjectUrl()
+    protected function wrapResult(ResultInterface $result = null)
     {
-        return $this->getResultByKey(self::RESULT_OBJECT_URL);
-    }
-
-    /**
-     * Retrieves the result's contents if they exist, null otherwise.
-     *
-     * @return array|null
-     *
-     * For additional information on the array structure:
-     * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#shape-object
-     */
-    public function getResultContents()
-    {
-        return $this->getResultByKey(self::RESULT_OBJECT_CONTENTS);
-    }
-
-    /**
-     * Sets all internal properties that derive from the exception.
-     *
-     * @param S3Exception $exception
-     */
-    protected function setDerivedExceptionValues(S3Exception $exception)
-    {
-        $this->errorType    = (null === $exception->getAwsErrorType())
-            ? self::ERROR_TYPE_UNKNOWN
-            : $exception->getAwsErrorType();
-        $this->errorCode    = (null === $exception->getAwsErrorCode())
-            ? self::ERROR_CODE_UNKNOWN
-            : $exception->getAwsErrorCode();
-        $this->errorMessage = $exception->getMessage();
+        return (null === $result)
+            ? new AwsS3Result()
+            : new AwsS3Result($result->toArray());
     }
 }

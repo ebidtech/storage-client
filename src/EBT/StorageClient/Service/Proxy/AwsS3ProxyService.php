@@ -12,11 +12,12 @@
 namespace EBT\StorageClient\Service\Proxy;
 
 use Aws\CommandInterface;
-use Aws\Credentials\CredentialsInterface;
 use Aws\Exception\AwsException;
 use Aws\S3\S3Client;
 use Aws\Waiter;
-use EBT\StorageClient\Entity\AwsResponse\AwsS3ProxyResponse;
+use EBT\StorageClient\Entity\Aws\ClientOptions\AwsS3ClientOptions;
+use EBT\StorageClient\Entity\Aws\Request\AwsS3Request;
+use EBT\StorageClient\Entity\Aws\Response\AwsS3Response;
 use EBT\StorageClient\Service\AwsS3ProxyServiceInterface;
 
 class AwsS3ProxyService implements AwsS3ProxyServiceInterface
@@ -27,25 +28,6 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html
      */
     const API_VERSION_2006_03_01 = '2006-03-01';
-
-    /**
-     * Client options keys.
-     */
-    const OPTION_VERSION            = 'version';
-    const OPTION_REGION             = 'region';
-    const OPTION_CREDENTIALS        = 'credentials';
-    const OPTION_CREDENTIALS_KEY    = 'key';
-    const OPTION_CREDENTIALS_SECRET = 'secret';
-
-    /**
-     * Request variables keys.
-     */
-    const REQUEST_KEY       = 'Key';
-    const REQUEST_BODY      = 'Body';
-    const REQUEST_BUCKET    = 'Bucket';
-    const REQUEST_MAX_KEYS  = 'MaxKeys';
-    const REQUEST_PREFIX    = 'Prefix';
-    const REQUEST_DELIMITER = 'Delimiter';
 
     /**
      * Command types.
@@ -71,39 +53,26 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * Constructor.
      *
-     * @param CredentialsInterface|array|bool|callable $credentials S3 credentials.
-     * @param string                                   $region      Region to use.
-     * @param string                                   $version     API version to use.
-     * @param array                                    $options     Additional options.
+     * @param AwsS3ClientOptions $options Client options.
      *
      * For a complete list of available options:
      *
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.AwsClient.html#___construct
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.S3.S3Client.html#___construct
      */
-    public function __construct($credentials, $region, $version, array $options = array())
+    public function __construct(AwsS3ClientOptions $options)
     {
-        /* Set required options. */
-        $options[self::OPTION_CREDENTIALS] = $credentials;
-        $options[self::OPTION_VERSION]     = $version;
-        $options[self::OPTION_REGION]      = $region;
-
         /* Instantiate the client. */
-        $this->client = new S3Client($options);
+        $this->client = new S3Client($options->toArray());
     }
 
     /**
      * {@inheritDoc}
      */
-    public function putObject($bucket, $key, $body, array $options = array())
+    public function putObject(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_BUCKET] = $bucket;
-        $options[self::REQUEST_KEY]    = $key;
-        $options[self::REQUEST_BODY]   = $body;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_PUT_OBJECT, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_PUT_OBJECT, $request->toArray());
 
         /* Execute the command. */
         return $this->executeCommand($command);
@@ -112,15 +81,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function putObjectAsync($bucket, $key, $body, array $options = array())
+    public function putObjectAsync(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_BUCKET] = $bucket;
-        $options[self::REQUEST_KEY]    = $key;
-        $options[self::REQUEST_BODY]   = $body;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_PUT_OBJECT, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_PUT_OBJECT, $request->toArray());
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
@@ -129,14 +93,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function getObject($bucket, $key, array $options = array())
+    public function getObject(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_BUCKET] = $bucket;
-        $options[self::REQUEST_KEY]    = $key;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_GET_OBJECT, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_GET_OBJECT, $request->toArray());
 
         /* Execute the command. */
         return $this->executeCommand($command);
@@ -145,14 +105,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function getObjectAsync($bucket, $key, array $options = array())
+    public function getObjectAsync(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_BUCKET] = $bucket;
-        $options[self::REQUEST_KEY]    = $key;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_GET_OBJECT, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_GET_OBJECT, $request->toArray());
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
@@ -161,13 +117,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function createBucket($bucket, array $options = array())
+    public function createBucket(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_BUCKET] = $bucket;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_CREATE_BUCKET, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_CREATE_BUCKET, $request->toArray());
 
         /* Execute the command. */
         return $this->executeCommand($command);
@@ -176,13 +129,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function createBucketAsync($bucket, array $options = array())
+    public function createBucketAsync(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_BUCKET] = $bucket;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_CREATE_BUCKET, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_CREATE_BUCKET, $request->toArray());
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
@@ -191,15 +141,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function headBucket($bucket)
+    public function headBucket(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options = array(
-            self::REQUEST_BUCKET => $bucket
-        );
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_HEAD_BUCKET, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_HEAD_BUCKET, $request->toArray());
 
         /* Execute the command. */
         return $this->executeCommand($command);
@@ -208,15 +153,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function headBucketAsync($bucket)
+    public function headBucketAsync(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options = array(
-            self::REQUEST_BUCKET => $bucket
-        );
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_HEAD_BUCKET, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_HEAD_BUCKET, $request->toArray());
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
@@ -225,14 +165,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function headObject($bucket, $key, array $options = array())
+    public function headObject(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_BUCKET] = $bucket;
-        $options[self::REQUEST_KEY]    = $key;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_HEAD_OBJECT, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_HEAD_OBJECT, $request->toArray());
 
         /* Execute the command. */
         return $this->executeCommand($command);
@@ -241,14 +177,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function headObjectAsync($bucket, $key, array $options = array())
+    public function headObjectAsync(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_BUCKET] = $bucket;
-        $options[self::REQUEST_KEY]    = $key;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_HEAD_OBJECT, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_HEAD_OBJECT, $request->toArray());
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
@@ -257,13 +189,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function listObjects($bucket, array $options = array())
+    public function listObjects(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_BUCKET] = $bucket;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_LIST_OBJECTS, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_LIST_OBJECTS, $request->toArray());
 
         /* Execute the command. */
         return $this->executeCommand($command);
@@ -272,13 +201,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function listObjectsAsync($bucket, array $options = array())
+    public function listObjectsAsync(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_BUCKET] = $bucket;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_LIST_OBJECTS, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_LIST_OBJECTS, $request->toArray());
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
@@ -287,15 +213,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function waitUntilBucketExists($bucket)
+    public function waitUntilBucketExists(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options = array(
-            self::REQUEST_BUCKET => $bucket
-        );
-
         /* Create the waiter. */
-        $waiter = $this->client->getWaiter(self::WAITER_TYPE_BUCKET_EXISTS, $options);
+        $waiter = $this->client->getWaiter(self::WAITER_TYPE_BUCKET_EXISTS, $request->toArray());
 
         /* Execute the waiter. */
         return $this->executeWaiter($waiter);
@@ -304,14 +225,10 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function waitUntilObjectExists($bucket, $key, array $options = array())
+    public function waitUntilObjectExists(AwsS3Request $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_BUCKET] = $bucket;
-        $options[self::REQUEST_KEY]    = $key;
-
         /* Create the waiter. */
-        $waiter = $this->client->getWaiter(self::WAITER_TYPE_OBJECT_EXISTS, $options);
+        $waiter = $this->client->getWaiter(self::WAITER_TYPE_OBJECT_EXISTS, $request->toArray());
 
         /* Execute the waiter. */
         return $this->executeWaiter($waiter);
@@ -322,7 +239,7 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
      *
      * @param CommandInterface $command Command to execute.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      */
     protected function executeCommand(CommandInterface $command)
     {
@@ -331,13 +248,13 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
         } catch (AwsException $e) {
 
             /* Return an error response. */
-            return new AwsS3ProxyResponse(
+            return new AwsS3Response(
                 null,
                 $e
             );
         }
 
-        return new AwsS3ProxyResponse($result, null);
+        return new AwsS3Response($result, null);
     }
 
     /**
@@ -345,7 +262,7 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
      *
      * @param CommandInterface $command Command to execute.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      */
     protected function executeAsyncCommand(CommandInterface $command)
     {
@@ -354,13 +271,13 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
         } catch (AwsException $e) {
 
             /* Return an error response. */
-            return new AwsS3ProxyResponse(
+            return new AwsS3Response(
                 null,
                 $e
             );
         }
 
-        return new AwsS3ProxyResponse($result, null);
+        return new AwsS3Response($result, null);
     }
 
     /**
@@ -368,7 +285,7 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
      *
      * @param Waiter $waiter Waiter to execute.
      *
-     * @return AwsS3ProxyResponse
+     * @return AwsS3Response
      */
     protected function executeWaiter(Waiter $waiter)
     {
@@ -378,13 +295,13 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
         } catch (AwsException $e) {
 
             /* Return an error response. */
-            return new AwsS3ProxyResponse(
+            return new AwsS3Response(
                 null,
                 $e
             );
         }
 
-        /* Waiter responses are not useful, so just set null. */
-        return new AwsS3ProxyResponse(null, null);
+        /* Empty result as waiters return nothing helpful. */
+        return new AwsS3Response(null, null);
     }
 }

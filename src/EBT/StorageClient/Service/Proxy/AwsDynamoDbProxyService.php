@@ -16,7 +16,8 @@ use Aws\Credentials\CredentialsInterface;
 use Aws\DynamoDb\DynamoDbClient;
 use Aws\Exception\AwsException;
 use Aws\Waiter;
-use EBT\StorageClient\Entity\AwsResponse\AwsDynamoDbProxyResponse;
+use EBT\StorageClient\Entity\Aws\Request\AwsDynamoDbRequest;
+use EBT\StorageClient\Entity\Aws\Response\AwsDynamoDbResponse;
 use EBT\StorageClient\Service\AwsDynamoDbProxyServiceInterface;
 
 class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
@@ -82,14 +83,10 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function putItem($tableName, $item, array $options = array())
+    public function putItem(AwsDynamoDbRequest $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_TABLE_NAME] = $tableName;
-        $options[self::REQUEST_ITEM]       = $item;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_PUT_ITEM, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_PUT_ITEM, $request->toArray());
 
         /* Execute the command. */
         return $this->executeCommand($command);
@@ -98,14 +95,10 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function putItemAsync($tableName, $item, array $options = array())
+    public function putItemAsync(AwsDynamoDbRequest $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_TABLE_NAME] = $tableName;
-        $options[self::REQUEST_ITEM]       = $item;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_PUT_ITEM, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_PUT_ITEM, $request->toArray());
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
@@ -114,14 +107,10 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function getItem($tableName, $key, array $options = array())
+    public function getItem(AwsDynamoDbRequest $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_TABLE_NAME] = $tableName;
-        $options[self::REQUEST_KEY]        = $key;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_GET_ITEM, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_GET_ITEM, $request->toArray());
 
         /* Execute the command. */
         return $this->executeCommand($command);
@@ -130,14 +119,10 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function getItemAsync($tableName, $key, array $options = array())
+    public function getItemAsync(AwsDynamoDbRequest $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_TABLE_NAME] = $tableName;
-        $options[self::REQUEST_KEY]        = $key;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_GET_ITEM, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_GET_ITEM, $request->toArray());
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
@@ -146,13 +131,10 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function batchWriteItem($requestItems, array $options = array())
+    public function batchWriteItem(AwsDynamoDbRequest $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_REQUEST_ITEMS] = $requestItems;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_BATCH_WRITE_ITEM, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_BATCH_WRITE_ITEM, $request->toArray());
 
         /* Execute the command. */
         return $this->executeCommand($command);
@@ -161,13 +143,10 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function batchWriteItemAsync($requestItems, array $options = array())
+    public function batchWriteItemAsync(AwsDynamoDbRequest $request)
     {
-        /* Set the options. */
-        $options[self::REQUEST_REQUEST_ITEMS] = $requestItems;
-
         /* Create the command. */
-        $command = $this->client->getCommand(self::COMMAND_TYPE_BATCH_WRITE_ITEM, $options);
+        $command = $this->client->getCommand(self::COMMAND_TYPE_BATCH_WRITE_ITEM, $request->toArray());
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
@@ -178,7 +157,7 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
      *
      * @param CommandInterface $command Command to execute.
      *
-     * @return AwsDynamoDbProxyResponse
+     * @return AwsDynamoDbResponse
      */
     protected function executeCommand(CommandInterface $command)
     {
@@ -187,13 +166,13 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
         } catch (AwsException $e) {
 
             /* Return an error response. */
-            return new AwsDynamoDbProxyResponse(
+            return new AwsDynamoDbResponse(
                 null,
                 $e
             );
         }
 
-        return new AwsDynamoDbProxyResponse($result, null);
+        return new AwsDynamoDbResponse($result, null);
     }
 
     /**
@@ -201,7 +180,7 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
      *
      * @param CommandInterface $command Command to execute.
      *
-     * @return AwsDynamoDbProxyResponse
+     * @return AwsDynamoDbResponse
      */
     protected function executeAsyncCommand(CommandInterface $command)
     {
@@ -210,13 +189,13 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
         } catch (AwsException $e) {
 
             /* Return an error response. */
-            return new AwsDynamoDbProxyResponse(
+            return new AwsDynamoDbResponse(
                 null,
                 $e
             );
         }
 
-        return new AwsDynamoDbProxyResponse($result, null);
+        return new AwsDynamoDbResponse($result, null);
     }
 
     /**
@@ -224,7 +203,7 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
      *
      * @param Waiter $waiter Waiter to execute.
      *
-     * @return AwsDynamoDbProxyResponse
+     * @return AwsDynamoDbResponse
      */
     protected function executeWaiter(Waiter $waiter)
     {
@@ -234,13 +213,13 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
         } catch (AwsException $e) {
 
             /* Return an error response. */
-            return new AwsDynamoDbProxyResponse(
+            return new AwsDynamoDbResponse(
                 null,
                 $e
             );
         }
 
         /* Waiter responses are not useful, so just set null. */
-        return new AwsDynamoDbProxyResponse(null, null);
+        return new AwsDynamoDbResponse(null, null);
     }
 }

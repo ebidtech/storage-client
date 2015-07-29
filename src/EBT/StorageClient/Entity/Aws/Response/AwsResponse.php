@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace EBT\StorageClient\Entity\AwsResponse;
+namespace EBT\StorageClient\Entity\Aws\Response;
 
 use Aws\Exception\AwsException;
 use Aws\ResultInterface;
+use EBT\StorageClient\Entity\Aws\Result\AwsResult;
 use GuzzleHttp\Promise\PromiseInterface;
 
 /**
@@ -29,7 +30,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * - Calling "getErrorMessage()", "isClientError()" or "isSuccessful()" would force the operation to complete before
  *   returning, as these methods' replies are only meaningful after the operation is complete.
  */
-abstract class BaseAwsProxyResponse
+abstract class AwsResponse
 {
     /**
      * Error type constants.
@@ -46,7 +47,7 @@ abstract class BaseAwsProxyResponse
     /**
      * Client result.
      *
-     * @var ResultInterface
+     * @var AwsResult
      */
     protected $result;
 
@@ -95,7 +96,7 @@ abstract class BaseAwsProxyResponse
     /**
      * Constructor.
      *
-     * @param ResultInterface|PromiseInterface|null $response  Client response.
+     * @param AwsResult|PromiseInterface|null $response  Client response.
      * @param AwsException|null                     $exception Client exception.
      */
     public function __construct($response = null, AwsException $exception = null)
@@ -148,7 +149,7 @@ abstract class BaseAwsProxyResponse
     /**
      * Retrieves the result, if any.
      *
-     * @return ResultInterface
+     * @return AwsResult
      */
     public function getResult()
     {
@@ -257,23 +258,6 @@ abstract class BaseAwsProxyResponse
     }
 
     /**
-     * Retrieves a result variable by its key.
-     *
-     * @param string $key The key to retrieve.
-     *
-     * @return mixed
-     */
-    public function getResultByKey($key)
-    {
-        /* We have to ensure that the operation was complete, call wait just to make sure. */
-        $this->wait();
-
-        return ($this->result instanceof ResultInterface) && ($this->result->hasKey($key))
-            ? $this->result->get($key)
-            : null;
-    }
-
-    /**
      * Waits for the operation to complete, when dealing with an asynchronous and incomplete operation.
      *
      * @throws \LogicException For unexpected exception not related to the SDK itself.
@@ -288,7 +272,7 @@ abstract class BaseAwsProxyResponse
 
         /* Wait for the response and unwrap it. */
         try {
-            $this->result = $this->promise->wait(true);
+            $this->result = $this->wrapResult($this->promise->wait(true));
         } catch (AwsException $e) {
 
             /* Set the response and exception. */
@@ -308,13 +292,13 @@ abstract class BaseAwsProxyResponse
     /**
      * Setups the client's response.
      *
-     * @param ResultInterface|PromiseInterface $response Client response.
+     * @param AwsResult|PromiseInterface $response Client response.
      */
     protected function setupClientResponse($response)
     {
         /* Conditional setup for synchronous responses. */
         if ($response instanceof ResultInterface) {
-            $this->result = $response;
+            $this->result = $this->wrapResult($response);
         }
 
         /* Conditional setup for asynchronous responses. */
@@ -347,4 +331,13 @@ abstract class BaseAwsProxyResponse
             ? self::ERROR_CODE_UNKNOWN
             : $exception->getAwsErrorCode();
     }
+
+    /**
+     * Wraps the original result.
+     *
+     * @param ResultInterface $result Original result.
+     *
+     * @return AwsResult
+     */
+    abstract protected function wrapResult(ResultInterface $result = null);
 }

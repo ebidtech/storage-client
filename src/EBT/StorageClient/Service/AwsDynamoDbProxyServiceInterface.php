@@ -11,7 +11,8 @@
 
 namespace EBT\StorageClient\Service;
 
-use EBT\StorageClient\Entity\AwsResponse\AwsDynamoDbProxyResponse;
+use EBT\StorageClient\Entity\Aws\Request\AwsDynamoDbRequest;
+use EBT\StorageClient\Entity\Aws\Response\AwsDynamoDbResponse;
 
 /**
  * Defines the operations that are possible to perform in DynamoDb. These operations are divided into multiple types.
@@ -42,82 +43,72 @@ interface AwsDynamoDbProxyServiceInterface
     /**
      * Stores an item into a DynamoDb table.
      *
-     * @param string $tableName Table name.
-     * @param string $item      Item definition.
-     * @param array  $options   Additional options.
+     * @param AwsDynamoDbRequest $request Request to perform.
      *
-     * @return AwsDynamoDbProxyResponse
+     * @return AwsDynamoDbResponse
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#putitem
      */
-    public function putItem($tableName, $item, array $options = array());
+    public function putItem(AwsDynamoDbRequest $request);
 
     /**
      * Stores an item into a DynamoDb table (asynchronous).
      *
-     * @param string $tableName Table name.
-     * @param string $item      Item definition.
-     * @param array  $options   Additional options.
+     * @param AwsDynamoDbRequest $request Request to perform.
      *
-     * @return AwsDynamoDbProxyResponse
+     * @return AwsDynamoDbResponse
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#putitem
      */
-    public function putItemAsync($tableName, $item, array $options = array());
+    public function putItemAsync(AwsDynamoDbRequest $request);
 
     /**
      * Fetches an item from a DynamoDb Table.
      *
-     * @param string $tableName Table name.
-     * @param string $key       Key to search for.
-     * @param array  $options   Additional options.
+     * @param AwsDynamoDbRequest $request Request to perform.
      *
-     * @return AwsDynamoDbProxyResponse
+     * @return AwsDynamoDbResponse
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#getitem
      */
-    public function getItem($tableName, $key, array $options = array());
+    public function getItem(AwsDynamoDbRequest $request);
 
     /**
      * Fetches an item from a DynamoDb Table (asynchronous).
      *
-     * @param string $tableName Table name.
-     * @param string $key       Key to search for.
-     * @param array  $options   Additional options.
+     * @param AwsDynamoDbRequest $request Request to perform.
      *
-     * @return AwsDynamoDbProxyResponse
+     * @return AwsDynamoDbResponse
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#getitem
      */
-    public function getItemAsync($tableName, $key, array $options = array());
+    public function getItemAsync(AwsDynamoDbRequest $request);
 
     /**
      * Performs batch write operations on multiple items and tables.
      *
-     * @param array $requestItems Request items.
-     * @param array $options      Additional options.
+     * @param AwsDynamoDbRequest $request Request to perform.
      *
-     * @return AwsDynamoDbProxyResponse
+     * @return AwsDynamoDbResponse
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#batchwriteitem
      */
-    public function batchWriteItem($requestItems, array $options = array());
+    public function batchWriteItem(AwsDynamoDbRequest $request);
 
     /**
      * Performs batch write operations on multiple items and tables (asynchronous).
      *
-     * @param array $requestItems Request items.
-     * @param array $options      Additional options.
+     * @param AwsDynamoDbRequest $request Request to perform.
      *
-     * @return AwsDynamoDbProxyResponse
+     * @return AwsDynamoDbResponse
      *
      * For additional information:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#batchwriteitem
      */
-    public function batchWriteItemAsync($requestItems, array $options = array());
+    public function batchWriteItemAsync(AwsDynamoDbRequest $request);
 }
