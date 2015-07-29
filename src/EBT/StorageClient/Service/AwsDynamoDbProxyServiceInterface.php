@@ -12,7 +12,7 @@
 namespace EBT\StorageClient\Service;
 
 use EBT\StorageClient\Entity\Aws\Request\AwsDynamoDbRequest;
-use EBT\StorageClient\Entity\Aws\Response\AwsDynamoDbResponse;
+use EBT\StorageClient\Model\Aws\Response\AwsDynamoDbResponse;
 
 /**
  * Defines the operations that are possible to perform in DynamoDb. These operations are divided into multiple types.

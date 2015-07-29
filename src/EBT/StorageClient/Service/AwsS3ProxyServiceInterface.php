@@ -12,7 +12,7 @@
 namespace EBT\StorageClient\Service;
 
 use EBT\StorageClient\Entity\Aws\Request\AwsS3Request;
-use EBT\StorageClient\Entity\Aws\Response\AwsS3Response;
+use EBT\StorageClient\Model\Aws\Response\AwsS3Response;
 
 /**
  * Defines the operations that are possible to perform in S3. These operations are divided into multiple types.

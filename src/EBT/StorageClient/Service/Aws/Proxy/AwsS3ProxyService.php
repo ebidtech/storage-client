@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace EBT\StorageClient\Service\Proxy;
+namespace EBT\StorageClient\Service\Aws\Proxy;
 
 use Aws\CommandInterface;
 use Aws\Exception\AwsException;
@@ -17,7 +17,7 @@ use Aws\S3\S3Client;
 use Aws\Waiter;
 use EBT\StorageClient\Entity\Aws\ClientOptions\AwsS3ClientOptions;
 use EBT\StorageClient\Entity\Aws\Request\AwsS3Request;
-use EBT\StorageClient\Entity\Aws\Response\AwsS3Response;
+use EBT\StorageClient\Model\Aws\Response\AwsS3Response;
 use EBT\StorageClient\Service\AwsS3ProxyServiceInterface;
 
 class AwsS3ProxyService implements AwsS3ProxyServiceInterface

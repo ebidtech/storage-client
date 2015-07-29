@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace EBT\StorageClient\Entity\Aws\Response;
+namespace EBT\StorageClient\Model\Aws\Response;
 
 use Aws\Exception\AwsException;
 use Aws\ResultInterface;

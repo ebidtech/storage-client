@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace EBT\StorageClient\Service\Proxy;
+namespace EBT\StorageClient\Service\Aws\Proxy;
 
 use Aws\CommandInterface;
 use Aws\Credentials\CredentialsInterface;
@@ -17,7 +17,7 @@ use Aws\DynamoDb\DynamoDbClient;
 use Aws\Exception\AwsException;
 use Aws\Waiter;
 use EBT\StorageClient\Entity\Aws\Request\AwsDynamoDbRequest;
-use EBT\StorageClient\Entity\Aws\Response\AwsDynamoDbResponse;
+use EBT\StorageClient\Model\Aws\Response\AwsDynamoDbResponse;
 use EBT\StorageClient\Service\AwsDynamoDbProxyServiceInterface;
 
 class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface

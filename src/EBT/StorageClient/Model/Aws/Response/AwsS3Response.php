@@ -9,10 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace EBT\StorageClient\Entity\Aws\Response;
+namespace EBT\StorageClient\Model\Aws\Response;
 
 use Aws\ResultInterface;
-use EBT\StorageClient\Entity\Aws\Result\AwsResult;
 use EBT\StorageClient\Entity\Aws\Result\AwsS3Result;
 
 class AwsS3Response extends AwsResponse
