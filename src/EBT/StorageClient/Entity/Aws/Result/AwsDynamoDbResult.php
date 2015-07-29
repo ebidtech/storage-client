@@ -11,6 +11,6 @@
 
 namespace EBT\StorageClient\Entity\Aws\Result;
 
-class AwsDynamoDbResult
+class AwsDynamoDbResult extends AwsResult
 {
 }

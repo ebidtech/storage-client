@@ -11,9 +11,7 @@
 
 namespace EBT\StorageClient\Entity\Aws\Request;
 
-use EBT\StorageClient\Entity\Aws\AwsObject;
-
-class AwsDynamoDbRequest extends AwsObject
+class AwsDynamoDbRequest extends AwsRequest
 {
     /**
      * Request parameter keys.
@@ -349,29 +347,5 @@ class AwsDynamoDbRequest extends AwsObject
     public function setTableName($value)
     {
         return $this->set(self::REQUEST_TABLE_NAME, $value);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function get($key)
-    {
-        return parent::get($key);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function set($key, $value)
-    {
-        return parent::set($key, $value);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function add($value)
-    {
-        return parent::add($value);
     }
 }
