@@ -72,969 +72,969 @@ class AwsS3Result extends AwsResult
     }
 
     /**
-     * Retrieves the "ResultETag" variable.
+     * Retrieves the "ETag" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultETag()
+    public function getETag()
     {
         return $this->get(self::RESULT_E_TAG);
     }
 
     /**
-     * Sets the "ResultETag" variable value.
+     * Sets the "ETag" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultETag($value)
+    public function setETag($value)
     {
         return $this->set(self::RESULT_E_TAG, $value);
     }
 
     /**
-     * Retrieves the "ResultExpiration" variable.
+     * Retrieves the "Expiration" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultExpiration()
+    public function getExpiration()
     {
         return $this->get(self::RESULT_EXPIRATION);
     }
 
     /**
-     * Sets the "ResultExpiration" variable value.
+     * Sets the "Expiration" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultExpiration($value)
+    public function setExpiration($value)
     {
         return $this->set(self::RESULT_EXPIRATION, $value);
     }
 
     /**
-     * Retrieves the "ResultObjectUrl" variable.
+     * Retrieves the "ObjectUrl" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultObjectUrl()
+    public function getObjectUrl()
     {
         return $this->get(self::RESULT_OBJECT_URL);
     }
 
     /**
-     * Sets the "ResultObjectUrl" variable value.
+     * Sets the "ObjectUrl" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultObjectUrl($value)
+    public function setObjectUrl($value)
     {
         return $this->set(self::RESULT_OBJECT_URL, $value);
     }
 
     /**
-     * Retrieves the "ResultRequestCharged" variable.
+     * Retrieves the "RequestCharged" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultRequestCharged()
+    public function getRequestCharged()
     {
         return $this->get(self::RESULT_REQUEST_CHARGED);
     }
 
     /**
-     * Sets the "ResultRequestCharged" variable value.
+     * Sets the "RequestCharged" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultRequestCharged($value)
+    public function setRequestCharged($value)
     {
         return $this->set(self::RESULT_REQUEST_CHARGED, $value);
     }
 
     /**
-     * Retrieves the "ResultSseCustomerAlgorithm" variable.
+     * Retrieves the "SseCustomerAlgorithm" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultSseCustomerAlgorithm()
+    public function getSseCustomerAlgorithm()
     {
         return $this->get(self::RESULT_SSE_CUSTOMER_ALGORITHM);
     }
 
     /**
-     * Sets the "ResultSseCustomerAlgorithm" variable value.
+     * Sets the "SseCustomerAlgorithm" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultSseCustomerAlgorithm($value)
+    public function setSseCustomerAlgorithm($value)
     {
         return $this->set(self::RESULT_SSE_CUSTOMER_ALGORITHM, $value);
     }
 
     /**
-     * Retrieves the "ResultSseCustomerKeyMd5" variable.
+     * Retrieves the "SseCustomerKeyMd5" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultSseCustomerKeyMd5()
+    public function getSseCustomerKeyMd5()
     {
         return $this->get(self::RESULT_SSE_CUSTOMER_KEY_MD5);
     }
 
     /**
-     * Sets the "ResultSseCustomerKeyMd5" variable value.
+     * Sets the "SseCustomerKeyMd5" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultSseCustomerKeyMd5($value)
+    public function setSseCustomerKeyMd5($value)
     {
         return $this->set(self::RESULT_SSE_CUSTOMER_KEY_MD5, $value);
     }
 
     /**
-     * Retrieves the "ResultSseKmsKeyId" variable.
+     * Retrieves the "SseKmsKeyId" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultSseKmsKeyId()
+    public function getSseKmsKeyId()
     {
         return $this->get(self::RESULT_SSE_KMS_KEY_ID);
     }
 
     /**
-     * Sets the "ResultSseKmsKeyId" variable value.
+     * Sets the "SseKmsKeyId" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultSseKmsKeyId($value)
+    public function setSseKmsKeyId($value)
     {
         return $this->set(self::RESULT_SSE_KMS_KEY_ID, $value);
     }
 
     /**
-     * Retrieves the "ResultServerSideEncryption" variable.
+     * Retrieves the "ServerSideEncryption" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultServerSideEncryption()
+    public function getServerSideEncryption()
     {
         return $this->get(self::RESULT_SERVER_SIDE_ENCRYPTION);
     }
 
     /**
-     * Sets the "ResultServerSideEncryption" variable value.
+     * Sets the "ServerSideEncryption" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultServerSideEncryption($value)
+    public function setServerSideEncryption($value)
     {
         return $this->set(self::RESULT_SERVER_SIDE_ENCRYPTION, $value);
     }
 
     /**
-     * Retrieves the "ResultVersionId" variable.
+     * Retrieves the "VersionId" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultVersionId()
+    public function getVersionId()
     {
         return $this->get(self::RESULT_VERSION_ID);
     }
 
     /**
-     * Sets the "ResultVersionId" variable value.
+     * Sets the "VersionId" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultVersionId($value)
+    public function setVersionId($value)
     {
         return $this->set(self::RESULT_VERSION_ID, $value);
     }
 
     /**
-     * Retrieves the "ResultAcceptRanges" variable.
+     * Retrieves the "AcceptRanges" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultAcceptRanges()
+    public function getAcceptRanges()
     {
         return $this->get(self::RESULT_ACCEPT_RANGES);
     }
 
     /**
-     * Sets the "ResultAcceptRanges" variable value.
+     * Sets the "AcceptRanges" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultAcceptRanges($value)
+    public function setAcceptRanges($value)
     {
         return $this->set(self::RESULT_ACCEPT_RANGES, $value);
     }
 
     /**
-     * Retrieves the "ResultBody" variable.
+     * Retrieves the "Body" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultBody()
+    public function getBody()
     {
         return $this->get(self::RESULT_BODY);
     }
 
     /**
-     * Sets the "ResultBody" variable value.
+     * Sets the "Body" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultBody($value)
+    public function setBody($value)
     {
         return $this->set(self::RESULT_BODY, $value);
     }
 
     /**
-     * Retrieves the "ResultCacheControl" variable.
+     * Retrieves the "CacheControl" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultCacheControl()
+    public function getCacheControl()
     {
         return $this->get(self::RESULT_CACHE_CONTROL);
     }
 
     /**
-     * Sets the "ResultCacheControl" variable value.
+     * Sets the "CacheControl" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultCacheControl($value)
+    public function setCacheControl($value)
     {
         return $this->set(self::RESULT_CACHE_CONTROL, $value);
     }
 
     /**
-     * Retrieves the "ResultContentDisposition" variable.
+     * Retrieves the "ContentDisposition" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultContentDisposition()
+    public function getContentDisposition()
     {
         return $this->get(self::RESULT_CONTENT_DISPOSITION);
     }
 
     /**
-     * Sets the "ResultContentDisposition" variable value.
+     * Sets the "ContentDisposition" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultContentDisposition($value)
+    public function setContentDisposition($value)
     {
         return $this->set(self::RESULT_CONTENT_DISPOSITION, $value);
     }
 
     /**
-     * Retrieves the "ResultContentEncoding" variable.
+     * Retrieves the "ContentEncoding" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultContentEncoding()
+    public function getContentEncoding()
     {
         return $this->get(self::RESULT_CONTENT_ENCODING);
     }
 
     /**
-     * Sets the "ResultContentEncoding" variable value.
+     * Sets the "ContentEncoding" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultContentEncoding($value)
+    public function setContentEncoding($value)
     {
         return $this->set(self::RESULT_CONTENT_ENCODING, $value);
     }
 
     /**
-     * Retrieves the "ResultContentLanguage" variable.
+     * Retrieves the "ContentLanguage" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultContentLanguage()
+    public function getContentLanguage()
     {
         return $this->get(self::RESULT_CONTENT_LANGUAGE);
     }
 
     /**
-     * Sets the "ResultContentLanguage" variable value.
+     * Sets the "ContentLanguage" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultContentLanguage($value)
+    public function setContentLanguage($value)
     {
         return $this->set(self::RESULT_CONTENT_LANGUAGE, $value);
     }
 
     /**
-     * Retrieves the "ResultContentLength" variable.
+     * Retrieves the "ContentLength" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultContentLength()
+    public function getContentLength()
     {
         return $this->get(self::RESULT_CONTENT_LENGTH);
     }
 
     /**
-     * Sets the "ResultContentLength" variable value.
+     * Sets the "ContentLength" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultContentLength($value)
+    public function setContentLength($value)
     {
         return $this->set(self::RESULT_CONTENT_LENGTH, $value);
     }
 
     /**
-     * Retrieves the "ResultContentRage" variable.
+     * Retrieves the "ContentRage" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultContentRage()
+    public function getContentRage()
     {
         return $this->get(self::RESULT_CONTENT_RAGE);
     }
 
     /**
-     * Sets the "ResultContentRage" variable value.
+     * Sets the "ContentRage" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultContentRage($value)
+    public function setContentRage($value)
     {
         return $this->set(self::RESULT_CONTENT_RAGE, $value);
     }
 
     /**
-     * Retrieves the "ResultContentType" variable.
+     * Retrieves the "ContentType" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultContentType()
+    public function getContentType()
     {
         return $this->get(self::RESULT_CONTENT_TYPE);
     }
 
     /**
-     * Sets the "ResultContentType" variable value.
+     * Sets the "ContentType" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultContentType($value)
+    public function setContentType($value)
     {
         return $this->set(self::RESULT_CONTENT_TYPE, $value);
     }
 
     /**
-     * Retrieves the "ResultDeleteMarker" variable.
+     * Retrieves the "DeleteMarker" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultDeleteMarker()
+    public function getDeleteMarker()
     {
         return $this->get(self::RESULT_DELETE_MARKER);
     }
 
     /**
-     * Sets the "ResultDeleteMarker" variable value.
+     * Sets the "DeleteMarker" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultDeleteMarker($value)
+    public function setDeleteMarker($value)
     {
         return $this->set(self::RESULT_DELETE_MARKER, $value);
     }
 
     /**
-     * Retrieves the "ResultExpires" variable.
+     * Retrieves the "Expires" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultExpires()
+    public function getExpires()
     {
         return $this->get(self::RESULT_EXPIRES);
     }
 
     /**
-     * Sets the "ResultExpires" variable value.
+     * Sets the "Expires" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultExpires($value)
+    public function setExpires($value)
     {
         return $this->set(self::RESULT_EXPIRES, $value);
     }
 
     /**
-     * Retrieves the "ResultLastModified" variable.
+     * Retrieves the "LastModified" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultLastModified()
+    public function getLastModified()
     {
         return $this->get(self::RESULT_LAST_MODIFIED);
     }
 
     /**
-     * Sets the "ResultLastModified" variable value.
+     * Sets the "LastModified" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultLastModified($value)
+    public function setLastModified($value)
     {
         return $this->set(self::RESULT_LAST_MODIFIED, $value);
     }
 
     /**
-     * Retrieves the "ResultMetadata" variable.
+     * Retrieves the "Metadata" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultMetadata()
+    public function getMetadata()
     {
         return $this->get(self::RESULT_METADATA);
     }
 
     /**
-     * Sets the "ResultMetadata" variable value.
+     * Sets the "Metadata" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultMetadata($value)
+    public function setMetadata($value)
     {
         return $this->set(self::RESULT_METADATA, $value);
     }
 
     /**
-     * Retrieves the "ResultMissingMeta" variable.
+     * Retrieves the "MissingMeta" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultMissingMeta()
+    public function getMissingMeta()
     {
         return $this->get(self::RESULT_MISSING_META);
     }
 
     /**
-     * Sets the "ResultMissingMeta" variable value.
+     * Sets the "MissingMeta" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultMissingMeta($value)
+    public function setMissingMeta($value)
     {
         return $this->set(self::RESULT_MISSING_META, $value);
     }
 
     /**
-     * Retrieves the "ResultReplicationStatus" variable.
+     * Retrieves the "ReplicationStatus" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultReplicationStatus()
+    public function getReplicationStatus()
     {
         return $this->get(self::RESULT_REPLICATION_STATUS);
     }
 
     /**
-     * Sets the "ResultReplicationStatus" variable value.
+     * Sets the "ReplicationStatus" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultReplicationStatus($value)
+    public function setReplicationStatus($value)
     {
         return $this->set(self::RESULT_REPLICATION_STATUS, $value);
     }
 
     /**
-     * Retrieves the "ResultRestore" variable.
+     * Retrieves the "Restore" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultRestore()
+    public function getRestore()
     {
         return $this->get(self::RESULT_RESTORE);
     }
 
     /**
-     * Sets the "ResultRestore" variable value.
+     * Sets the "Restore" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultRestore($value)
+    public function setRestore($value)
     {
         return $this->set(self::RESULT_RESTORE, $value);
     }
 
     /**
-     * Retrieves the "ResultStorageClass" variable.
+     * Retrieves the "StorageClass" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultStorageClass()
+    public function getStorageClass()
     {
         return $this->get(self::RESULT_STORAGE_CLASS);
     }
 
     /**
-     * Sets the "ResultStorageClass" variable value.
+     * Sets the "StorageClass" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultStorageClass($value)
+    public function setStorageClass($value)
     {
         return $this->set(self::RESULT_STORAGE_CLASS, $value);
     }
 
     /**
-     * Retrieves the "ResultWebsiteRedirectLocation" variable.
+     * Retrieves the "WebsiteRedirectLocation" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultWebsiteRedirectLocation()
+    public function getWebsiteRedirectLocation()
     {
         return $this->get(self::RESULT_WEBSITE_REDIRECT_LOCATION);
     }
 
     /**
-     * Sets the "ResultWebsiteRedirectLocation" variable value.
+     * Sets the "WebsiteRedirectLocation" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultWebsiteRedirectLocation($value)
+    public function setWebsiteRedirectLocation($value)
     {
         return $this->set(self::RESULT_WEBSITE_REDIRECT_LOCATION, $value);
     }
 
     /**
-     * Retrieves the "ResultLocation" variable.
+     * Retrieves the "Location" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultLocation()
+    public function getLocation()
     {
         return $this->get(self::RESULT_LOCATION);
     }
 
     /**
-     * Sets the "ResultLocation" variable value.
+     * Sets the "Location" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultLocation($value)
+    public function setLocation($value)
     {
         return $this->set(self::RESULT_LOCATION, $value);
     }
 
     /**
-     * Retrieves the "ResultCommonPrefixes" variable.
+     * Retrieves the "CommonPrefixes" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultCommonPrefixes()
+    public function getCommonPrefixes()
     {
         return $this->get(self::RESULT_COMMON_PREFIXES);
     }
 
     /**
-     * Sets the "ResultCommonPrefixes" variable value.
+     * Sets the "CommonPrefixes" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultCommonPrefixes($value)
+    public function setCommonPrefixes($value)
     {
         return $this->set(self::RESULT_COMMON_PREFIXES, $value);
     }
 
     /**
-     * Retrieves the "ResultCommonPrefix" variable.
+     * Retrieves the "CommonPrefix" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultCommonPrefix()
+    public function getCommonPrefix()
     {
         return $this->get(self::RESULT_COMMON_PREFIX);
     }
 
     /**
-     * Sets the "ResultCommonPrefix" variable value.
+     * Sets the "CommonPrefix" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultCommonPrefix($value)
+    public function setCommonPrefix($value)
     {
         return $this->set(self::RESULT_COMMON_PREFIX, $value);
     }
 
     /**
-     * Retrieves the "ResultContents" variable.
+     * Retrieves the "Contents" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultContents()
+    public function getContents()
     {
         return $this->get(self::RESULT_CONTENTS);
     }
 
     /**
-     * Sets the "ResultContents" variable value.
+     * Sets the "Contents" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultContents($value)
+    public function setContents($value)
     {
         return $this->set(self::RESULT_CONTENTS, $value);
     }
 
     /**
-     * Retrieves the "ResultKey" variable.
+     * Retrieves the "Key" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultKey()
+    public function getKey()
     {
         return $this->get(self::RESULT_KEY);
     }
 
     /**
-     * Sets the "ResultKey" variable value.
+     * Sets the "Key" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultKey($value)
+    public function setKey($value)
     {
         return $this->set(self::RESULT_KEY, $value);
     }
 
     /**
-     * Retrieves the "ResultOwner" variable.
+     * Retrieves the "Owner" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultOwner()
+    public function getOwner()
     {
         return $this->get(self::RESULT_OWNER);
     }
 
     /**
-     * Sets the "ResultOwner" variable value.
+     * Sets the "Owner" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultOwner($value)
+    public function setOwner($value)
     {
         return $this->set(self::RESULT_OWNER, $value);
     }
 
     /**
-     * Retrieves the "ResultDisplayName" variable.
+     * Retrieves the "DisplayName" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultDisplayName()
+    public function getDisplayName()
     {
         return $this->get(self::RESULT_DISPLAY_NAME);
     }
 
     /**
-     * Sets the "ResultDisplayName" variable value.
+     * Sets the "DisplayName" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultDisplayName($value)
+    public function setDisplayName($value)
     {
         return $this->set(self::RESULT_DISPLAY_NAME, $value);
     }
 
     /**
-     * Retrieves the "ResultId" variable.
+     * Retrieves the "Id" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultId()
+    public function getId()
     {
         return $this->get(self::RESULT_ID);
     }
 
     /**
-     * Sets the "ResultId" variable value.
+     * Sets the "Id" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultId($value)
+    public function setId($value)
     {
         return $this->set(self::RESULT_ID, $value);
     }
 
     /**
-     * Retrieves the "ResultSize" variable.
+     * Retrieves the "Size" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultSize()
+    public function getSize()
     {
         return $this->get(self::RESULT_SIZE);
     }
 
     /**
-     * Sets the "ResultSize" variable value.
+     * Sets the "Size" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultSize($value)
+    public function setSize($value)
     {
         return $this->set(self::RESULT_SIZE, $value);
     }
 
     /**
-     * Retrieves the "ResultDelimiter" variable.
+     * Retrieves the "Delimiter" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultDelimiter()
+    public function getDelimiter()
     {
         return $this->get(self::RESULT_DELIMITER);
     }
 
     /**
-     * Sets the "ResultDelimiter" variable value.
+     * Sets the "Delimiter" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultDelimiter($value)
+    public function setDelimiter($value)
     {
         return $this->set(self::RESULT_DELIMITER, $value);
     }
 
     /**
-     * Retrieves the "ResultEncodingType" variable.
+     * Retrieves the "EncodingType" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultEncodingType()
+    public function getEncodingType()
     {
         return $this->get(self::RESULT_ENCODING_TYPE);
     }
 
     /**
-     * Sets the "ResultEncodingType" variable value.
+     * Sets the "EncodingType" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultEncodingType($value)
+    public function setEncodingType($value)
     {
         return $this->set(self::RESULT_ENCODING_TYPE, $value);
     }
 
     /**
-     * Retrieves the "ResultIsTruncated" variable.
+     * Retrieves the "IsTruncated" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultIsTruncated()
+    public function getIsTruncated()
     {
         return $this->get(self::RESULT_IS_TRUNCATED);
     }
 
     /**
-     * Sets the "ResultIsTruncated" variable value.
+     * Sets the "IsTruncated" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultIsTruncated($value)
+    public function setIsTruncated($value)
     {
         return $this->set(self::RESULT_IS_TRUNCATED, $value);
     }
 
     /**
-     * Retrieves the "ResultMarker" variable.
+     * Retrieves the "Marker" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultMarker()
+    public function getMarker()
     {
         return $this->get(self::RESULT_MARKER);
     }
 
     /**
-     * Sets the "ResultMarker" variable value.
+     * Sets the "Marker" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultMarker($value)
+    public function setMarker($value)
     {
         return $this->set(self::RESULT_MARKER, $value);
     }
 
     /**
-     * Retrieves the "ResultMaxKeys" variable.
+     * Retrieves the "MaxKeys" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultMaxKeys()
+    public function getMaxKeys()
     {
         return $this->get(self::RESULT_MAX_KEYS);
     }
 
     /**
-     * Sets the "ResultMaxKeys" variable value.
+     * Sets the "MaxKeys" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultMaxKeys($value)
+    public function setMaxKeys($value)
     {
         return $this->set(self::RESULT_MAX_KEYS, $value);
     }
 
     /**
-     * Retrieves the "ResultName" variable.
+     * Retrieves the "Name" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultName()
+    public function getName()
     {
         return $this->get(self::RESULT_NAME);
     }
 
     /**
-     * Sets the "ResultName" variable value.
+     * Sets the "Name" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultName($value)
+    public function setName($value)
     {
         return $this->set(self::RESULT_NAME, $value);
     }
 
     /**
-     * Retrieves the "ResultNextMarker" variable.
+     * Retrieves the "NextMarker" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultNextMarker()
+    public function getNextMarker()
     {
         return $this->get(self::RESULT_NEXT_MARKER);
     }
 
     /**
-     * Sets the "ResultNextMarker" variable value.
+     * Sets the "NextMarker" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultNextMarker($value)
+    public function setNextMarker($value)
     {
         return $this->set(self::RESULT_NEXT_MARKER, $value);
     }
 
     /**
-     * Retrieves the "ResultPrefix" variable.
+     * Retrieves the "Prefix" variable.
      *
      * @return AwsS3Result|mixed|null
      */
-    public function getResultPrefix()
+    public function getPrefix()
     {
         return $this->get(self::RESULT_PREFIX);
     }
 
     /**
-     * Sets the "ResultPrefix" variable value.
+     * Sets the "Prefix" variable value.
      *
      * @param mixed $value Value to set.
      *
      * @return AwsS3Result
      */
-    public function setResultPrefix($value)
+    public function setPrefix($value)
     {
         return $this->set(self::RESULT_PREFIX, $value);
     }

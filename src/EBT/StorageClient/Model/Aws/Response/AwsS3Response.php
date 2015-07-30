@@ -76,16 +76,6 @@ class AwsS3Response extends AwsResponse
     }
 
     /**
-     * Retrieves the result, if any.
-     *
-     * @return AwsS3Result
-     */
-    public function getResult()
-    {
-        return parent::getResult();
-    }
-
-    /**
      * {@inheritDoc}
      */
     protected function wrapResult(ResultInterface $result = null)

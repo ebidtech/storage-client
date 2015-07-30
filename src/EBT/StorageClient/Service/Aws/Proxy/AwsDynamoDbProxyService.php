@@ -12,10 +12,10 @@
 namespace EBT\StorageClient\Service\Aws\Proxy;
 
 use Aws\CommandInterface;
-use Aws\Credentials\CredentialsInterface;
 use Aws\DynamoDb\DynamoDbClient;
 use Aws\Exception\AwsException;
 use Aws\Waiter;
+use EBT\StorageClient\Entity\Aws\ClientOptions\AwsDynamoDbClientOptions;
 use EBT\StorageClient\Entity\Aws\Request\AwsDynamoDbRequest;
 use EBT\StorageClient\Model\Aws\Response\AwsDynamoDbResponse;
 use EBT\StorageClient\Service\AwsDynamoDbProxyServiceInterface;
@@ -28,23 +28,6 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html
      */
     const API_VERSION_2012_08_10 = '2012-08-10';
-
-    /**
-     * Client options keys.
-     */
-    const OPTION_VERSION            = 'version';
-    const OPTION_REGION             = 'region';
-    const OPTION_CREDENTIALS        = 'credentials';
-    const OPTION_CREDENTIALS_KEY    = 'key';
-    const OPTION_CREDENTIALS_SECRET = 'secret';
-
-    /**
-     * Request variables keys.
-     */
-    const REQUEST_TABLE_NAME    = 'TableName';
-    const REQUEST_ITEM          = 'Item';
-    const REQUEST_KEY           = 'Key';
-    const REQUEST_REQUEST_ITEMS = 'RequestItems';
 
     /**
      * Command types.
@@ -61,23 +44,15 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
     /**
      * Constructor.
      *
-     * @param CredentialsInterface|array|bool|callable $credentials S3 credentials.
-     * @param string                                   $region      Region to use.
-     * @param string                                   $version     API version to use.
-     * @param array                                    $options     Additional options.
+     * @param AwsDynamoDbClientOptions $options Client options.
      *
      * For a complete list of available options:
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.AwsClient.html#___construct
      */
-    public function __construct($credentials, $region, $version, array $options = array())
+    public function __construct(AwsDynamoDbClientOptions $options)
     {
-        /* Set required options. */
-        $options[self::OPTION_CREDENTIALS] = $credentials;
-        $options[self::OPTION_VERSION]     = $version;
-        $options[self::OPTION_REGION]      = $region;
-
         /* Instantiate the client. */
-        $this->client = new DynamoDbClient($options);
+        $this->client = new DynamoDbClient($options->toArray());
     }
 
     /**

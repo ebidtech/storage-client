@@ -11,6 +11,9 @@
 
 namespace EBT\StorageClient\Model\Aws\Response;
 
+use Aws\ResultInterface;
+use EBT\StorageClient\Entity\Aws\Result\AwsDynamoDbResult;
+
 class AwsDynamoDbResponse extends AwsResponse
 {
     /**
@@ -21,14 +24,6 @@ class AwsDynamoDbResponse extends AwsResponse
     const ERROR_CODE_CONDITIONAL_CHECK_FAILED            = 'ConditionalCheckFailedException';
     const ERROR_CODE_PROVISIONED_THROUGHPUT_EXCEEDED     = 'ProvisionedThroughputExceededException';
     const ERROR_CODE_ITEM_COLLECTION_SIZE_LIMIT_EXCEEDED = 'ItemCollectionSizeLimitExceededException';
-
-    /**
-     * Result keys.
-     */
-    const RESULT_CONSUMED_CAPACITY       = 'ConsumedCapacity';
-    const RESULT_ATTRIBUTES              = 'Attributes';
-    const RESULT_ITEM_COLLECTION_METRICS = 'ItemCollectionMetrics';
-    const RESULT_ITEM                    = 'Item';
 
     /**
      * Checks if a ValidationException error occurred.
@@ -81,54 +76,12 @@ class AwsDynamoDbResponse extends AwsResponse
     }
 
     /**
-     * Retrieves the result's attributes array if it exists, null otherwise.
-     *
-     * @return array|null
-     *
-     * For additional information about array structure:
-     * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#shape-attributevalue
+     * {@inheritDoc}
      */
-    public function getResultAttributes()
+    protected function wrapResult(ResultInterface $result = null)
     {
-        return $this->getResultByKey(self::RESULT_ATTRIBUTES);
-    }
-
-    /**
-     * Retrieves the result's consumed capacity if it exists, null otherwise.
-     *
-     * @return array|null
-     *
-     * For additional information about the array structure:
-     * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#shape-consumedcapacity
-     */
-    public function getResultConsumedCapacity()
-    {
-        return $this->getResultByKey(self::RESULT_CONSUMED_CAPACITY);
-    }
-
-    /**
-     * Retrieves the result's item collection metrics if they exist, null otherwise.
-     *
-     * @return array|null
-     *
-     * For additional information about the array structure:
-     * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#shape-itemcollectionmetrics
-     */
-    public function getResultItemCollectionMetrics()
-    {
-        return $this->getResultByKey(self::RESULT_ITEM_COLLECTION_METRICS);
-    }
-
-    /**
-     * Retrieves the result's item if it exists, null otherwise.
-     *
-     * @return array|null
-     *
-     * For additional information about the array structure:
-     * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#shape-attributevalue
-     */
-    public function getResultItem()
-    {
-        return $this->getResultByKey(self::RESULT_ITEM);
+        return (null === $result)
+            ? new AwsDynamoDbResult()
+            : new AwsDynamoDbResult($result->toArray());
     }
 }
