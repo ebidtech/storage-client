@@ -24,16 +24,4 @@ class AwsResult extends AwsObject
     {
         parent::__construct($values);
     }
-
-    /**
-     * {@inheritDoc}
-     *
-     * Since results are read only we override the get logic to return null in when the resource is not found.
-     */
-    public function get($key)
-    {
-        return isset($this->values[$key])
-            ? $this->values[$key]
-            : null;
-    }
 }

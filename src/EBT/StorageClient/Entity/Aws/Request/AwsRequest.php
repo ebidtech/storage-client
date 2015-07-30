@@ -24,28 +24,4 @@ abstract class AwsRequest extends AwsObject
     {
         parent::__construct($values);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function get($key)
-    {
-        return parent::get($key);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function set($key, $value)
-    {
-        return parent::set($key, $value);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function add($value)
-    {
-        return parent::add($value);
-    }
 }

@@ -111,4 +111,20 @@ interface AwsDynamoDbProxyServiceInterface
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#batchwriteitem
      */
     public function batchWriteItemAsync(AwsDynamoDbRequest $request);
+
+    /**
+     * Performs batch write operations on multiple items and tables, allowing for batches larger than 25 items; it
+     * also retries until all items are written or until it is not possible to retry further.
+     *
+     * Use same request format as for "batchWriteItem()".
+     *
+     * @param $request AwsDynamoDbRequest $request Request to perform.
+     *
+     * @return AwsDynamoDbResponse
+     *
+     * For additional information:
+     * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/class-Aws.DynamoDb.WriteRequestBatch.html
+     * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-dynamodb-2012-08-10.html#batchwriteitem
+     */
+    public function batchWriteItemMultipleAndRetry(AwsDynamoDbRequest $request);
 }

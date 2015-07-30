@@ -13,6 +13,7 @@ namespace EBT\StorageClient\Service\Aws\Proxy;
 
 use Aws\CommandInterface;
 use Aws\DynamoDb\DynamoDbClient;
+use Aws\DynamoDb\WriteRequestBatch;
 use Aws\Exception\AwsException;
 use Aws\Waiter;
 use EBT\StorageClient\Entity\Aws\ClientOptions\AwsDynamoDbClientOptions;
@@ -125,6 +126,39 @@ class AwsDynamoDbProxyService implements AwsDynamoDbProxyServiceInterface
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function batchWriteItemMultipleAndRetry(AwsDynamoDbRequest $request)
+    {
+        $batch = new WriteRequestBatch($this->client);
+
+        /* Iterate every table. */
+        foreach ($request->getRequestItems() as $table => $items) {
+
+            /* Iterates every item. */
+            /** @var AwsDynamoDbRequest $item */
+            foreach ($items as $item) {
+                empty($item->getPutRequest()->toArray())
+                    ? $batch->delete($item->getDeleteRequest()->getKey()->toArray(), $table)
+                    : $batch->put($item->getPutRequest()->getItem()->toArray(), $table);
+            }
+        }
+
+        try {
+            $batch->flush(true);
+        } catch (AwsException $e) {
+
+            /* Return an error response. */
+            return new AwsDynamoDbResponse(
+                null,
+                $e
+            );
+        }
+
+        return new AwsDynamoDbResponse(null, null);
     }
 
     /**

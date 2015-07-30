@@ -1038,4 +1038,20 @@ class AwsS3Result extends AwsResult
     {
         return $this->set(self::RESULT_PREFIX, $value);
     }
+
+    /**
+     * Retrieves a variable by its key.
+     *
+     * Since results are read only we override the get logic to return null in when the resource is not found.
+     *
+     * @param string $key Variable's key.
+     *
+     * @return AwsS3Result|mixed|null
+     */
+    public function get($key)
+    {
+        return isset($this->values[$key])
+            ? $this->values[$key]
+            : null;
+    }
 }

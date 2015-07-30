@@ -739,4 +739,41 @@ class AwsDynamoDbRequest extends AwsRequest
     {
         return $this->set(self::REQUEST_SS, $value);
     }
+
+    /**
+     * Retrieves a variable by its key.
+     *
+     * @param string $key Variable's key.
+     *
+     * @return AwsDynamoDbRequest|mixed|null
+     */
+    public function get($key)
+    {
+        return parent::get($key);
+    }
+
+    /**
+     * Sets a new variable.
+     *
+     * @param string $key   Variable's key.
+     * @param mixed  $value Variable's value.
+     *
+     * @return AwsDynamoDbRequest
+     */
+    public function set($key, $value)
+    {
+        return parent::set($key, $value);
+    }
+
+    /**
+     * Adds a new variable (without explicitly setting a key).
+     *
+     * @param mixed $value Variable's value.
+     *
+     * @return AwsDynamoDbRequest
+     */
+    public function add($value)
+    {
+        return parent::add($value);
+    }
 }

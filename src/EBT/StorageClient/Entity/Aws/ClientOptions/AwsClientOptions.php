@@ -503,28 +503,4 @@ abstract class AwsClientOptions extends AwsObject
 
         return $this;
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function get($key)
-    {
-        return parent::get($key);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function set($key, $value)
-    {
-        return parent::set($key, $value);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function add($value)
-    {
-        return parent::add($value);
-    }
 }

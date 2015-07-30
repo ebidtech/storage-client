@@ -118,7 +118,7 @@ abstract class AwsObject implements \IteratorAggregate
      *
      * @param mixed $value Variable's value.
      *
-     * @return AwsObject
+     * @return static
      */
     protected function add($value)
     {

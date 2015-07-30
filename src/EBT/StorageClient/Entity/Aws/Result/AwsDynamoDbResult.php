@@ -601,4 +601,20 @@ class AwsDynamoDbResult extends AwsResult
     {
         return $this->set(self::RESULT_PUT_REQUEST, $value);
     }
+
+    /**
+     * Retrieves a variable by its key.
+     *
+     * Since results are read only we override the get logic to return null in when the resource is not found.
+     *
+     * @param string $key Variable's key.
+     *
+     * @return AwsDynamoDbResult|mixed|null
+     */
+    public function get($key)
+    {
+        return isset($this->values[$key])
+            ? $this->values[$key]
+            : null;
+    }
 }

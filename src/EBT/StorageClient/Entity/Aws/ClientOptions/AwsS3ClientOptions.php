@@ -67,4 +67,41 @@ class AwsS3ClientOptions extends AwsClientOptions
 
         return $this;
     }
+
+    /**
+     * Retrieves a variable by its key.
+     *
+     * @param string $key Variable's key.
+     *
+     * @return AwsS3ClientOptions|mixed|null
+     */
+    public function get($key)
+    {
+        return parent::get($key);
+    }
+
+    /**
+     * Sets a new variable.
+     *
+     * @param string $key   Variable's key.
+     * @param mixed  $value Variable's value.
+     *
+     * @return AwsS3ClientOptions
+     */
+    public function set($key, $value)
+    {
+        return parent::set($key, $value);
+    }
+
+    /**
+     * Adds a new variable (without explicitly setting a key).
+     *
+     * @param mixed $value Variable's value.
+     *
+     * @return AwsS3ClientOptions
+     */
+    public function add($value)
+    {
+        return parent::add($value);
+    }
 }
