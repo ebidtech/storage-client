@@ -76,6 +76,16 @@ class AwsDynamoDbResponse extends AwsResponse
     }
 
     /**
+     * Retrieves the result, if any.
+     *
+     * @return AwsDynamoDbResult
+     */
+    public function getResult()
+    {
+        return parent::getResult();
+    }
+
+    /**
      * {@inheritDoc}
      */
     protected function wrapResult(ResultInterface $result = null)
