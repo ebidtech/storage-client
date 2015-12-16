@@ -11,6 +11,8 @@
 
 namespace EBT\StorageClient\Entity\Aws\Result;
 
+use Psr\Http\Message\StreamInterface;
+
 class AwsS3Result extends AwsResult
 {
     /**
@@ -298,7 +300,15 @@ class AwsS3Result extends AwsResult
      */
     public function getBody()
     {
-        return $this->get(self::RESULT_BODY);
+        $body = $this->get(self::RESULT_BODY);
+
+        /* The body can actually be a stream, in which case we collect and store its result under the same key. */
+        if ($body instanceof StreamInterface) {
+            $body = (string) $body;
+            $this->setBody($body);
+        }
+
+        return $body;
     }
 
     /**
