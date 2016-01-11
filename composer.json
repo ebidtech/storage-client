@@ -10,7 +10,6 @@
     "psr/log":                   "1.0.0",
     "ebidtech/options-resolver": "1.0.*",
     "ebidtech/compress":         "1.1.*",
-    "ebidtech/ebt-validator":    "1.2.*",
     "aws/aws-sdk-php":           "3.2.*"
   },
   "require-dev": {
