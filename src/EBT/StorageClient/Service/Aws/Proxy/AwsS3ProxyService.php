@@ -33,6 +33,7 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
      * Command types.
      */
     const COMMAND_TYPE_PUT_OBJECT    = 'PutObject';
+    const COMMAND_TYPE_COPY_OBJECT   = 'CopyObject';
     const COMMAND_TYPE_GET_OBJECT    = 'GetObject';
     const COMMAND_TYPE_CREATE_BUCKET = 'CreateBucket';
     const COMMAND_TYPE_HEAD_BUCKET   = 'HeadBucket';
@@ -88,6 +89,18 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function copyObject(AwsS3Request $request)
+    {
+        /* Create the command. */
+        $command = $this->client->getCommand(self::COMMAND_TYPE_COPY_OBJECT, $request->toArray());
+
+        /* Execute the command. */
+        return $this->executeCommand($command);
     }
 
     /**

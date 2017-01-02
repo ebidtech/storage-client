@@ -65,6 +65,18 @@ interface AwsS3ProxyServiceInterface
     public function putObjectAsync(AwsS3Request $request);
 
     /**
+     * Copies an existent object in the storage.
+     *
+     * @param AwsS3Request $request The request object.
+     *
+     * @return AwsS3Response
+     *
+     * For additional information:
+     * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#copyobject
+     */
+    public function copyObject(AwsS3Request $request);
+
+    /**
      * Retrieves a new object from the storage.
      *
      * @param AwsS3Request $request The request object.

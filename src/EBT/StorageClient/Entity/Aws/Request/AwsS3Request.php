@@ -26,6 +26,7 @@ class AwsS3Request extends AwsRequest
     const REQUEST_CONTENT_LENGTH               = 'ContentLength';
     const REQUEST_CONTENT_SHA_256              = 'ContentSHA256';
     const REQUEST_CONTENT_TYPE                 = 'ContentType';
+    const REQUEST_COPY_SOURCE                  = 'CopySource';
     const REQUEST_EXPIRES                      = 'Expires';
     const REQUEST_GRANT_FULL_CONTROL           = 'GrantFullControl';
     const REQUEST_GRANT_READ                   = 'GrantRead';
@@ -293,6 +294,28 @@ class AwsS3Request extends AwsRequest
     public function setContentType($value)
     {
         return $this->set(self::REQUEST_CONTENT_TYPE, $value);
+    }
+
+    /**
+     * Retrieves the "CopySource" variable.
+     *
+     * @return AwsS3Request|mixed|null
+     */
+    public function getCopySource()
+    {
+        return $this->get(self::REQUEST_COPY_SOURCE);
+    }
+
+    /**
+     * Sets the "CopySource" variable value.
+     *
+     * @param mixed $value Value to set.
+     *
+     * @return AwsS3Request
+     */
+    public function setCopySource($value)
+    {
+        return $this->set(self::REQUEST_COPY_SOURCE, $value);
     }
 
     /**
