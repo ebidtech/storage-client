@@ -130,4 +130,14 @@ abstract class AwsObject implements \IteratorAggregate
 
         return $this;
     }
+
+    /**
+     * Get the amount of values contained on within the values property.
+     *
+     * @return int
+     */
+    public function getValuesCount()
+    {
+        return count($this->values);
+    }
 }

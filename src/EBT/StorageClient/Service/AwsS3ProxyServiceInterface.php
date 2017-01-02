@@ -185,7 +185,7 @@ interface AwsS3ProxyServiceInterface
     public function headObjectAsync(AwsS3Request $request);
 
     /**
-     * Retrieves a list of keys from a bucket.
+     * Retrieves a list of (up to 1000) keys from a bucket.
      *
      * @param AwsS3Request $request The request object.
      *
@@ -197,7 +197,7 @@ interface AwsS3ProxyServiceInterface
     public function listObjects(AwsS3Request $request);
 
     /**
-     * Retrieves a list of keys from a bucket (asynchronously).
+     * Retrieves a list of (up to 1000) keys from a bucket (asynchronously).
      *
      * @param AwsS3Request $request The request object.
      *
@@ -207,6 +207,18 @@ interface AwsS3ProxyServiceInterface
      * @link http://docs.aws.amazon.com/aws-sdk-php/v3/api/api-s3-2006-03-01.html#listobjects
      */
     public function listObjectsAsync(AwsS3Request $request);
+
+    /**
+     * Retrieves a list of all the keys from a bucket.
+     *
+     * @param AwsS3Request $request The request object.
+     *
+     * @return AwsS3Response
+     *
+     * For additional information:
+     * @link http://docs.aws.amazon.com/AmazonS3/latest/dev/ListingObjectKeysUsingPHP.html
+     */
+    public function listAllObjects(AwsS3Request $request);
 
     /**
      * Waits until a bucket exists.

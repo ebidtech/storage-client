@@ -13,6 +13,7 @@ namespace EBT\StorageClient\Service\Aws\Proxy;
 
 use Aws\CommandInterface;
 use Aws\Exception\AwsException;
+use Aws\Result;
 use Aws\S3\S3Client;
 use Aws\Waiter;
 use EBT\StorageClient\Entity\Aws\ClientOptions\AwsS3ClientOptions;
@@ -221,6 +222,30 @@ class AwsS3ProxyService implements AwsS3ProxyServiceInterface
 
         /* Execute the command. */
         return $this->executeAsyncCommand($command);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function listAllObjects(AwsS3Request $request)
+    {
+        try {
+            $loadedResultList = [];
+            $resultList       = $this->client->getIterator(self::COMMAND_TYPE_LIST_OBJECTS, $request->toArray());
+            /* Enforce iteration to load all the objects. */
+            foreach ($resultList as $result) {
+                $loadedResultList[] = $result;
+            }
+        } catch (AwsException $e) {
+
+            /* Return an error response. */
+            return new AwsS3Response(null, $e);
+        }
+
+        return new AwsS3Response(
+            new Result($loadedResultList),
+            null
+        );
     }
 
     /**
